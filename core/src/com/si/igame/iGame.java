@@ -1,20 +1,25 @@
 package com.si.igame;
 
+import com.si.igame.entity.Entity;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.si.igame.entity.enemy.Enemy;
+import com.si.igame.entity.player.Player;
 
 public class iGame extends ApplicationAdapter {
     SpriteBatch batch;
-    Texture img;
-
+    Player p;
+    Enemy e;
+    
     @Override
     public void create()
     {
+        e = new Enemy();
+        p = new Player();
         batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
     }
 
     @Override
@@ -22,8 +27,10 @@ public class iGame extends ApplicationAdapter {
     {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        p.updateInput();
         batch.begin();
-        batch.draw(img, 0, 0);
+        e.draw(batch, 0, 0, 0, 0);
+        p.draw(batch, 0, 0, 0, 0);
         batch.end();
     }
 
@@ -31,6 +38,5 @@ public class iGame extends ApplicationAdapter {
     public void dispose()
     {
         batch.dispose();
-        img.dispose();
     }
 }
