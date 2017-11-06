@@ -3,6 +3,7 @@ package com.si.igame.entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 
@@ -10,7 +11,7 @@ public abstract class Entity implements Drawable
 {
     private Texture m_texture;
     protected Sprite m_sprite;
-    private int m_health;
+    protected int m_health;
     
     public Entity()
     {
@@ -24,6 +25,11 @@ public abstract class Entity implements Drawable
         return m_health;
     }
     
+    public Rectangle getBounds()
+    {
+        return m_sprite.getBoundingRectangle();
+    }
+    
     //Setters
     public void setHealth(int health)
     {
@@ -31,6 +37,11 @@ public abstract class Entity implements Drawable
     }
     
     //Methods
+    public void update(float delta)
+    {
+        
+    }
+    
     public void addHealth(int healthToAdd)
     {
         m_health += healthToAdd;

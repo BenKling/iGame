@@ -4,8 +4,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.Entity;
 import com.si.igame.entity.MovingEntity;
 import com.si.igame.entity.player.Player;
+import com.si.igame.contact.Contact;
 
-public class Enemy extends MovingEntity
+public class Enemy extends MovingEntity implements Contact 
 {
     //public Weapon weapon;
     
@@ -15,14 +16,22 @@ public class Enemy extends MovingEntity
     }
     
     //Methods
-    public void update(Player player)
+    public void update(float delta)
     {
         //AI things
     }
     
-    public void applyContact(Entity entity)
+    @Override
+    public void onContact(Entity e) 
     {
-        //Damage
+            e.addHealth(-1);
+            System.out.println(e.getHealth());    
+    }
+
+    @Override
+    public boolean isContact(Entity e) 
+    {
+        return e.getBounds().overlaps(this.getBounds());
     }
     
 }

@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class MovingEntity extends Entity
 {
-    private float m_speed;
+    protected float m_speed = 1.0f;
     
     public MovingEntity()
     {
@@ -21,6 +21,6 @@ public abstract class MovingEntity extends Entity
     //Methods
     public void move(Vector2 direction)
     {
-        m_sprite.translate(direction.x , direction.y);
+        m_sprite.translate(direction.x * m_speed , direction.y * m_speed);
     }
 }

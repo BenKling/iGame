@@ -6,31 +6,35 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.enemy.Enemy;
 import com.si.igame.entity.player.Player;
+import com.si.igame.entity.projectile.Bullet;
+import com.si.igame.entitymanager.EntityManager;
 
 public class iGame extends ApplicationAdapter {
     SpriteBatch batch;
-    Player p;
-    Enemy e;
+    EntityManager eMan;
     
     @Override
     public void create()
     {
-        e = new Enemy();
-        p = new Player();
+        eMan = new EntityManager();
+        
         batch = new SpriteBatch();
     }
 
     @Override
     public void render()
     {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        float delta = Gdx.graphics.getDeltaTime();
+        
+        Gdx.gl.glClearColor(0, 0.5f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        p.updateInput();
+        eMan.update(delta);
+        
         batch.begin();
-        e.draw(batch, 0, 0, 0, 0);
-        p.draw(batch, 0, 0, 0, 0);
+            eMan.draw(batch);
         batch.end();
     }
 
