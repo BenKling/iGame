@@ -11,12 +11,17 @@ import java.util.ArrayList;
 
 public class EntityManager 
 {
-    public ArrayList<Enemy> m_enemies = new ArrayList();
-    public ArrayList<Bullet> m_bullets = new ArrayList();
-    public Player m_player = new Player();
+    public ArrayList<Enemy> m_enemies;
+    public ArrayList<Bullet> m_bullets;
+    public Player m_player;
     
     public EntityManager()
     {
+    	m_player = new Player();
+    	
+    	m_enemies = new ArrayList<Enemy>();
+    	m_bullets = new ArrayList<Bullet>();
+    	
         m_enemies.add(new Enemy());
         m_bullets.add(new Bullet(new Vector2(100, 20), (float) (Math.PI/2)));
         m_player = new Player();
