@@ -49,14 +49,14 @@ public class EntityManager
     {
         for(Entity e: m_enemies)
         {
-            e.draw(batch, 0, 0, 0, 0);
+            e.draw(batch);
         }        
         
         for(Entity e: m_bullets)
         {
-            e.draw(batch, 0, 0, 0, 0);
+            e.draw(batch);
         }
         
-        m_player.draw(batch, 0, 0, 0, 0);
+        m_player.draw(batch);
     }
 }
