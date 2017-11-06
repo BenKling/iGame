@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.MovingEntity;
-import com.si.igame.entity.projectile.Bullet;
 import com.si.igame.weapon.Weapon;
 
 public class Player extends MovingEntity

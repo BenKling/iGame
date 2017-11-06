@@ -1,7 +1,6 @@
 package com.si.igame.weapon;
 
 import com.badlogic.gdx.math.Vector2;
-import com.si.igame.entity.Entity;
 import com.si.igame.entity.projectile.Bullet;
 import java.util.ArrayList;
 

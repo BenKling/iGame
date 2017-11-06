@@ -3,7 +3,6 @@ package com.si.igame.entity.enemy;
 import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.Entity;
 import com.si.igame.entity.MovingEntity;
-import com.si.igame.entity.player.Player;
 import com.si.igame.contact.Contact;
 
 public class Enemy extends MovingEntity implements Contact 
