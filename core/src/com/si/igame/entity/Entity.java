@@ -14,7 +14,8 @@ public abstract class Entity implements Drawable
     
     public Entity()
     {
-        m_texture = new Texture("enemy.png");
+        m_health = 1;
+        m_texture = new Texture("missing.png");
         m_sprite = new Sprite(m_texture );
     }
     
@@ -30,6 +31,13 @@ public abstract class Entity implements Drawable
     }
     
     //Setters
+    public void setTexture(String file)
+    {
+        m_texture.dispose();
+        m_texture = new Texture(file);
+        m_sprite.setTexture(m_texture);
+    }
+    
     public void setHealth(int health)
     {
         m_health = health;
@@ -44,11 +52,14 @@ public abstract class Entity implements Drawable
     public void addHealth(int healthToAdd)
     {
         m_health += healthToAdd;
+        
     }
-    
+
     @Override
     public void draw(Batch batch)
     {
-        batch.draw(m_sprite.getTexture(), m_sprite.getX(), m_sprite.getY());
+        batch.draw(m_sprite.getTexture(), m_sprite.getX(), m_sprite.getY(),
+                m_sprite.getWidth() * m_sprite.getScaleX(),
+                m_sprite.getHeight() * m_sprite.getScaleY());
     }
 }

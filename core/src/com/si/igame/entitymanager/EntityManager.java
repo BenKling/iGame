@@ -1,5 +1,6 @@
 package com.si.igame.entitymanager;
 
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.Entity;
@@ -30,17 +31,42 @@ public class EntityManager
         m_player.setWeapon(w);
     }
     
-    public void update(float delta)
+    public void update(Camera camera, float delta)
     {
+        ArrayList<Entity> deadEntities = new ArrayList<Entity>();
+        
+        
         for(Entity e: m_enemies)
         {
             e.update(delta);
+            
+            if(e.getHealth() <= 0)
+            {
+                deadEntities.add(e);
+            }
         }
         
-        for(Entity e: m_bullets)
+        for(Bullet bullet: m_bullets)
         {
-            e.update(delta);
+            bullet.update(delta);
+            
+            for(Enemy enemy: m_enemies)
+            {
+                if(bullet.isContact(enemy))
+                {
+                    bullet.onContact(enemy);
+                    deadEntities.add(bullet);
+                }
+            }
         }
+        
+        for(Entity e: deadEntities)
+        {
+            m_enemies.remove(e);
+            m_bullets.remove(e);
+        }
+        
+        m_player.updateInput(camera, delta);
         
         m_player.update(delta);
     }

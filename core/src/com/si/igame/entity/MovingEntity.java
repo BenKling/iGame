@@ -19,8 +19,9 @@ public abstract class MovingEntity extends Entity
     }
     
     //Methods
-    public void move(Vector2 direction)
+    public void move(Vector2 direction, float delta)
     {
-        m_sprite.translate(direction.x * m_speed , direction.y * m_speed);
+        direction.nor();
+        m_sprite.translate(direction.x * m_speed * delta, direction.y * m_speed * delta);
     }
 }

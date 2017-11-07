@@ -11,7 +11,9 @@ public class Enemy extends MovingEntity implements Contact
     
     public Enemy()
     {
-        move(new Vector2(100, 100));
+        m_health = 200;
+        setTexture("enemy.png");
+        m_sprite.setScale(4);
     }
     
     //Methods
