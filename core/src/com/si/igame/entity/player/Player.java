@@ -64,7 +64,7 @@ public class Player extends MovingEntity
             move(new Vector2(1,0), delta);
         }
         
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && interval >= 0.5f)
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && interval >= 0.2f)
         {
             Vector2 screenCoords = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Vector3 cameraCoords = camera.unproject(new Vector3(screenCoords.x, screenCoords.y, 0.0f));

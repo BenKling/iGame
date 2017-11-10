@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.si.igame.entity.Entity;
-import com.si.igame.entity.enemy.Enemy;
+import com.si.igame.entity.enemy.*;
 import com.si.igame.entity.player.Player;
 import com.si.igame.entity.projectile.Bullet;
 import com.si.igame.weapon.Weapon;
@@ -18,12 +18,20 @@ public class EntityManager
     
     public EntityManager()
     {
+        EnemyBuilder enemyBuilder = new EnemyBuilder();
+        enemyBuilder.setAttackSpeed(.75f).setDamage(20).setTextureFile("enemy.png").setHealth(100).setScale(2).setSpeed(250);
+        
     	m_player = new Player();
     	
     	m_enemies = new ArrayList<Enemy>();
     	m_bullets = new ArrayList<Bullet>();
     	
-        m_enemies.add(new Enemy());
+        m_enemies.add(enemyBuilder.build());
+        
+        enemyBuilder.setTextureFile("bossfight.png").setHealth(400);
+        m_enemies.add(enemyBuilder.build());
+        m_enemies.get(1).setPosition(new Vector2(150, 150));
+        
         m_bullets.add(new Bullet(new Vector2(100, 20), (float) (Math.PI/2)));
         m_player = new Player();
         

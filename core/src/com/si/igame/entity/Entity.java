@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.si.igame.drawable.Drawable;
 
 public abstract class Entity implements Drawable
@@ -31,6 +32,11 @@ public abstract class Entity implements Drawable
     }
     
     //Setters
+    public void setPosition(Vector2 pos)
+    {
+        m_sprite.setPosition(pos.x, pos.y);
+    }
+    
     public void setTexture(String file)
     {
         m_texture.dispose();
@@ -43,7 +49,7 @@ public abstract class Entity implements Drawable
         m_health = health;
     }
     
-    //Methods
+    //Methods    
     public void update(float delta)
     {
         

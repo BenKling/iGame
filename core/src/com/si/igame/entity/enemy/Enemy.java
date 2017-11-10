@@ -9,11 +9,13 @@ public class Enemy extends MovingEntity implements Contact
 {
     //public Weapon weapon;
     
-    public Enemy()
+    protected Enemy(EnemyBuilder enemyBuilder)
     {
-        m_health = 200;
-        setTexture("enemy.png");
-        m_sprite.setScale(4);
+        setTexture(enemyBuilder.m_textureFile);
+        m_sprite.setScale(enemyBuilder.m_scale);
+        m_speed = enemyBuilder.m_speed;
+        m_health = enemyBuilder.m_health;
+        
     }
     
     //Methods
