@@ -8,11 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.si.igame.entity.MovingEntity;
 import com.si.igame.weapon.Weapon;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Player extends MovingEntity
+public class Player extends MovingEntity 
 {
     private float interval = 0;
     private Weapon m_weapon = null;
@@ -25,12 +22,24 @@ public class Player extends MovingEntity
         m_speed = 50;
         setTexture("player.png");
         m_sprite.setScale(2);
+        m_team = 2;
     }
     
     //Methods
+    @Override
+    public void onDeath()
+    {
+        setPosition(0, 0);
+        setHealth(100);
+        setDead(false);
+    }
+    
     public void update(float delta)
     {
-        
+        if(getHealth() <= 0)
+        {
+            setDead(true);
+        }
     }
     
     public void setWeapon(Weapon weapon)
@@ -74,7 +83,7 @@ public class Player extends MovingEntity
 
             float angle = atan2(cameraCoords2D.y, cameraCoords2D.x);
 
-            m_weapon.shoot(new Vector2(m_sprite.getX(), m_sprite.getY()), angle);
+            m_weapon.shoot(new Vector2(m_sprite.getX(), m_sprite.getY()), angle, m_team);
 
             interval = 0;
         }

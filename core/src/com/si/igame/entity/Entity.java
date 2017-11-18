@@ -12,12 +12,16 @@ public abstract class Entity implements Drawable
     private Texture m_texture;
     protected Sprite m_sprite;
     protected int m_health;
+    protected int m_team; // Default 0, 1 is enemy, 2 is player
+    protected boolean m_isDead;
     
     public Entity()
     {
+        m_team = 0;
+        m_isDead = false;
         m_health = 1;
         m_texture = new Texture("missing.png");
-        m_sprite = new Sprite(m_texture );
+        m_sprite = new Sprite(m_texture);
     }
     
     //Getters
@@ -31,10 +35,20 @@ public abstract class Entity implements Drawable
         return m_sprite.getBoundingRectangle();
     }
     
+    public int getTeam()
+    {
+        return m_team;
+    }
+    
     //Setters
     public void setPosition(Vector2 pos)
     {
         m_sprite.setPosition(pos.x, pos.y);
+    }
+    
+    public void setPosition(float x, float y)
+    {
+        m_sprite.setPosition(x, y);
     }
     
     public void setTexture(String file)
@@ -49,7 +63,12 @@ public abstract class Entity implements Drawable
         m_health = health;
     }
     
-    //Methods    
+    protected void setDead(boolean deathness)
+    {
+        m_isDead = deathness;
+    }
+    
+    //Methods
     public void update(float delta)
     {
         
@@ -60,12 +79,27 @@ public abstract class Entity implements Drawable
         m_health += healthToAdd;
         
     }
+    
+    public boolean isDead()
+    {
+        return m_isDead;
+    }
 
+    public void onContact(Entity e)
+    {
+        
+    }
+    
     @Override
     public void draw(Batch batch)
     {
         batch.draw(m_sprite.getTexture(), m_sprite.getX(), m_sprite.getY(),
                 m_sprite.getWidth() * m_sprite.getScaleX(),
                 m_sprite.getHeight() * m_sprite.getScaleY());
+    }
+    
+    public void onDeath()
+    {
+        
     }
 }
